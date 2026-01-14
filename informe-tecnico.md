@@ -8,6 +8,8 @@
 
 **Enlace a archivos en repositorio:** https://github.com/asier-toraya/HE-P3-AG.git
 
+**Nota**: Las partes 3, 4 y 5 están detalladas con más precisión e imágenes en `informe-pentesting.md`
+
 ## Índice
 0. [Objetivo y entorno](#objetivo-y-entorno)
 1. [Parte 1 - SQLi](#parte-1---sqli)
