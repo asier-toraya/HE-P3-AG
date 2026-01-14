@@ -34,12 +34,6 @@ Informe completo de auditoría de seguridad que incluye:
 
 ---
 
-**Autor:** Asier González  
-**Proyecto:** Hacking Ético - Proyecto 3  
-**Repositorio:** [github.com/asier-toraya/HE-P3-AG](https://github.com/asier-toraya/HE-P3-AG)
-
----
-
 ## Licencia
 
 Este proyecto es material educativo para el curso de Ciberseguridad y Hacking Ético.
