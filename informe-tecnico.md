@@ -96,7 +96,7 @@ Se documenta la resolucion tecnica de los apartados del enunciado para la aplica
 
 <br>
 
-## b) Explicación del uso de &amp; en lugar de & en enlaces GET
+## b) Explicación del uso de `&amp`; en lugar de & en enlaces GET
 
 | Campo           | Valor                                                                                                             |
 | --------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -106,12 +106,37 @@ Se documenta la resolucion tecnica de los apartados del enunciado para la aplica
 
 ## c) Vulnerabilidad en show_comments.php y corrección
 
-| Campo                                    | Valor                                                                                                                                                                                                                                            |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ¿Cuál es el problema?                    | Salida sin escape de `username` y `body` (XSS) y uso directo de `$_GET['id']` en la query (SQLi).                                                                                                                                                |
-| Sustituyo el código de la/las líneas ... | la consulta con `$_GET['id']` y los `echo` de `username`/`body` sin sanitizar.                                                                                                                                                                   |
-| ... por el siguiente código ...          | `$stmt = $db->prepare("SELECT ... WHERE playerId = :id");`<br>`$stmt->bindValue(":id", $id, SQLITE3_INTEGER);`<br>`echo htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8');`<br>`echo htmlspecialchars($row['body'], ENT_QUOTES, 'UTF-8');` |
+| Campo                                    | Valor                                                                                             |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| ¿Cuál es el problema?                    | Salida sin escape de `username` y `body` (XSS) y uso directo de `$_GET['id']` en la query (SQLi). |
+| Sustituyo el código de la/las líneas ... | la consulta con `$_GET['id']` y los `echo` de `username`/`body` sin sanitizar.                    |
+| ... por el siguiente código ...          | ...                                                                                               |
 
+```
+if (isset($_GET['id'])) {
+            $playerId = (int) $_GET['id'];
+
+            $stmt = $db->prepare(
+                'SELECT commentId, username, body
+                FROM comments C, users U
+                WHERE C.playerId = :playerId AND U.userId = C.userId
+                ORDER BY C.playerId DESC'
+            );
+            $stmt->bindValue(':playerId', $playerId, SQLITE3_INTEGER);
+
+            $result = $stmt->execute() or die('Invalid query');
+
+            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                $safeUser = htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8');
+                $safeBody = htmlspecialchars($row['body'], ENT_QUOTES, 'UTF-8');
+
+                echo "<div>
+                <h4> {$safeUser}</h4>
+                <p>commented: {$safeBody}</p>
+              </div>";
+            }
+        }
+```
 <br>
 
 ## d) Identificar otras páginas afectadas por XSS y análisis

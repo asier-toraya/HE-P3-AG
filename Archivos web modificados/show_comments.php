@@ -28,9 +28,9 @@
 
             $stmt = $db->prepare(
                 'SELECT commentId, username, body
-         FROM comments C, users U
-         WHERE C.playerId = :playerId AND U.userId = C.userId
-         ORDER BY C.playerId DESC'
+                FROM comments C, users U
+                WHERE C.playerId = :playerId AND U.userId = C.userId
+                ORDER BY C.playerId DESC'
             );
             $stmt->bindValue(':playerId', $playerId, SQLITE3_INTEGER);
 
