@@ -17,7 +17,7 @@ El objetivo principal es identificar, explotar y mitigar vulnerabilidades web co
 
 ## Documentación
 
-### 1. [Informe Completo](informe-completo.md)
+### 1. [Informe Completo](Informe-completo.md)
 Documento que fusiona el informe técnico y el informe de pentesting en un solo documento.
 
 ### 2. [Informe Técnico](informe-tecnico.md)
