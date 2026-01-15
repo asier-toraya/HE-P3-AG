@@ -17,14 +17,17 @@ El objetivo principal es identificar, explotar y mitigar vulnerabilidades web co
 
 ## Documentación
 
-### 1. [Informe Técnico](informe-tecnico.md)
+### 1. [Informe Completo](informe-completo.md)
+Documento que fusiona el informe técnico y el informe de pentesting en un solo documento.
+
+### 2. [Informe Técnico](informe-tecnico.md)
 Documento técnico estructurado en formato de tablas que responde a cada apartado del enunciado del proyecto. Incluye:
 - Descripción de vulnerabilidades encontradas
 - Código vulnerable identificado
 - Soluciones implementadas
 - Justificación técnica de cada medida
 
-### 2. [Informe de Pentesting](Informe-pentesting.md)
+### 3. [Informe de Pentesting](Informe-pentesting.md)
 Informe completo de auditoría de seguridad que incluye:
 - Metodología de pruebas
 - Proceso de explotación paso a paso
